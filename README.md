@@ -19,3 +19,7 @@
 ## 部署
 
 `npm run build`
+
+### 部署到 Github Pages
+
+参考 [create-react-app Deployment: GitHub Pages](https://create-react-app.dev/docs/deployment/#github-pages)
