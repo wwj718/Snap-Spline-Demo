@@ -23,3 +23,5 @@
 ### 部署到 Github Pages
 
 参考 [create-react-app Deployment: GitHub Pages](https://create-react-app.dev/docs/deployment/#github-pages)
+
+当前项目部署在: [https://wwj718.github.io/Snap-Spline-Demo/](https://wwj718.github.io/Snap-Spline-Demo/)
