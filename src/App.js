@@ -41,9 +41,9 @@ function App() {
     if (attribute === "position") {
       let position = data.slice(2);
       // const newPosition = { ...window.object.current.position };
-      window.object.current.position.x += position[0];
-      window.object.current.position.y += position[1];
-      window.object.current.position.z += position[2];
+      window.object.current.position.x = position[0];
+      window.object.current.position.y = position[1];
+      window.object.current.position.z = position[2];
       /*anime({
         targets: window.object.current.position,
         ...newPosition,
@@ -53,9 +53,9 @@ function App() {
 
     if (attribute === "rotation") {
       let rotation = data.slice(2);
-      window.object.current.rotation.x += rotation[0] * (Math.PI / 180);
-      window.object.current.rotation.y += rotation[1] * (Math.PI / 180);
-      window.object.current.rotation.z += rotation[2] * (Math.PI / 180);
+      window.object.current.rotation.x = rotation[0];
+      window.object.current.rotation.y = rotation[1];
+      window.object.current.rotation.z = rotation[2];
     }
 
     if (attribute === "scale") {
