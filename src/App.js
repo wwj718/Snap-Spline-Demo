@@ -25,7 +25,7 @@ function App() {
   });
 
   let supervisor = new window.Supervisor("child");
-  let agent = new window.IframeAgent("iframeAgent");
+  let agent = new window.IframeAgent("SplineWorld");
   supervisor.addAgent(agent);
 
   window.addEventListener("message", (event) => {
