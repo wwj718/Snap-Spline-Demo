@@ -1,7 +1,7 @@
 import { useRef } from "react";
 // import anime from "animejs";
 import Spline from "@splinetool/react-spline";
-import { Supervisor, Agent} from "./dynatalk-over-postmessage-es6.js";
+import { Supervisor, Agent } from "./dynatalk-over-postmessage-es6.js";
 
 class IframeAgent extends Agent {
   get_attribute(name, attribute) {
@@ -96,9 +96,15 @@ function App() {
     agent.sendTo("SnapAgent", "echo", [event]);
   }
 
+  const url = new window.URL(window.location.href);
+  const params = new window.URLSearchParams(url.search);
+  const project = params.get('project');
+  const sceneUrl = project ? project : 'https://prod.spline.design/nO5gRl8xdZ5gp4UJ/scene.splinecode';
+  // const sceneUrl = 'https://prod.spline.design/nO5gRl8xdZ5gp4UJ/scene.splinecode';
+
   return (
     <Spline
-      scene="https://prod.spline.design/nO5gRl8xdZ5gp4UJ/scene.splinecode"
+      scene={sceneUrl}
       onLoad={onLoad}
       onKeyDown={onKeyDown}
       onMouseDown={onMouseDown}
