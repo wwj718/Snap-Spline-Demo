@@ -71,13 +71,17 @@ function App() {
   });
 
   function onKeyDown(e) {
-    let msg = "KeyDown: s(shake)"
-    console.log(window.parent.postMessage(msg, "*"));
+    let event = "KeyDown: s(shake)"
+    console.log(event);
+    // window.parent.postMessage(event, "*")
+    agent.sendTo("SnapAgent", "echo", [event]);
   }
 
   function onMouseDown(e) {
-    let msg = "MouseDown"
-    console.log(window.parent.postMessage(msg, "*"));
+    let event = "MouseDown"
+    console.log(event);
+    // window.parent.postMessage(event, "*")
+    agent.sendTo("SnapAgent", "echo", [event]);
   }
 
   return (
