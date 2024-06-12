@@ -1,6 +1,16 @@
 import { useRef } from "react";
 // import anime from "animejs";
 import Spline from "@splinetool/react-spline";
+import { Supervisor, Agent} from "./dynatalk-over-postmessage-es6.js";
+
+class IframeAgent extends Agent {
+  get_attribute(name, attribute) {
+    // console.log(`get_attribute: ${name}, ${attribute}`)
+    window.object.current = window.spline.current.findObjectByName(name);
+    let value = window.object.current[attribute];
+    this.respondWith([value.x, value.y, value.z]);
+  }
+}
 
 function App() {
 
@@ -14,6 +24,7 @@ function App() {
     window.object = object;
   }
 
+  /*
   window.Agent.subclass('IframeAgent',
     'default category', {
     get_attribute: function (name, attribute) {
@@ -23,9 +34,10 @@ function App() {
       this.respondWith([value.x, value.y, value.z]);
     },
   });
+  */
 
-  let supervisor = new window.Supervisor("child");
-  let agent = new window.IframeAgent("SplineWorld");
+  let supervisor = new Supervisor("child");
+  let agent = new IframeAgent("SplineWorld");
   supervisor.addAgent(agent);
 
   window.addEventListener("message", (event) => {
