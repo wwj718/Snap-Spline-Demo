@@ -93,16 +93,9 @@ function App() {
   let agent = new IframeAgent("SplineWorld");
   supervisor.addAgent(agent);
 
-  function onKeyDown(e) {
-    let event = "KeyDown: s(shake)"
-    console.log(event);
-    // window.parent.postMessage(event, "*")
-    agent.sendTo("SnapAgent", "echo", [event]);
-  }
-
-  function onMouseDown(e) {
-    let event = "MouseDown"
-    console.log(event);
+  function handleEvent(e) {
+    let event = [e.target.name, e.type]
+    console.log("event:", event);
     // window.parent.postMessage(event, "*")
     agent.sendTo("SnapAgent", "echo", [event]);
   }
@@ -117,8 +110,13 @@ function App() {
     <Spline
       scene={sceneUrl}
       onLoad={onLoad}
-      onKeyDown={onKeyDown}
-      onMouseDown={onMouseDown}
+      onKeyUp={handleEvent}
+      onKeyDown={handleEvent}
+      onMouseUp={handleEvent}
+      onMouseDown={handleEvent}
+      // onWheel={handleEvent}
+      onMouseHover={handleEvent}
+      // onLookAt={handleEvent}
     />
   );
 }
