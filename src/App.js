@@ -4,12 +4,64 @@ import Spline from "@splinetool/react-spline";
 import { Supervisor, Agent } from "./dynatalk-over-postmessage-es6.js";
 
 class IframeAgent extends Agent {
-  get_attribute(name, attribute) {
+  // read and modify object
+  get_attribute(name, attribute_name) {
     // console.log(`get_attribute: ${name}, ${attribute}`)
     window.object.current = window.spline.current.findObjectByName(name);
-    let value = window.object.current[attribute];
+    if (!window.object.current){this.raiseWith("This object does not exist"); return};
+    let value = window.object.current[attribute_name];
     this.respondWith([value.x, value.y, value.z]);
   }
+  set_attribute(name, attribute_name, value) {
+    window.object.current = window.spline.current.findObjectByName(name);
+    if (!window.object.current){this.raiseWith("This object does not exist"); return};
+    if (["position", "rotation", "scale"].includes(attribute_name)) {
+      window.object.current[attribute_name].x = value[0];
+      window.object.current[attribute_name].y = value[1];
+      window.object.current[attribute_name].z = value[2];
+    }
+
+    if (attribute_name === "visible") {
+      window.object.current.visible = value[0];
+    }
+  }
+
+  set_variable(var_name, value) {
+    // window.spline
+    window.spline.current.setVariable(var_name, value);
+  }
+
+  setBackgroundColor(value) {
+    window.spline.current.setBackgroundColor(value);
+  }
+
+  getAllObjects() {
+    let result = window.spline.current.getAllObjects();
+    console.log("getAllObjects: ", result)
+    this.respondWith([result]);
+  }
+
+  getSplineEvents(){
+    this.respondWith([window.spline.current.getSplineEvents()]);
+  }
+
+  getVariables(){
+    this.respondWith([window.spline.current.getVariables()]);
+  }
+
+  setZoom(value){
+    window.spline.current.setZoom(value);
+  }
+
+  setSize(width, height){
+    window.spline.current.setSize(width, height);
+  }
+
+  emitEvent(name, eventName){
+    // mouseDown
+    window.spline.current.emitEvent(eventName, name);
+  }
+
 }
 
 function App() {
@@ -22,6 +74,7 @@ function App() {
     spline.current = splineApp;
     window.spline = spline;
     window.object = object;
+    agent.sendTo("SnapAgent", "onLoadSpline", []);
   }
 
   /*
@@ -39,48 +92,6 @@ function App() {
   let supervisor = new Supervisor("child");
   let agent = new IframeAgent("SplineWorld");
   supervisor.addAgent(agent);
-
-  window.addEventListener("message", (event) => {
-    if (!event.origin.includes("snap")) {
-      return;
-    }
-    let data = JSON.parse(event.data);
-
-    let name = data[0];
-    let attribute = data[1];
-    window.object.current = window.spline.current.findObjectByName(name);
-
-    if (attribute === "position") {
-      let position = data.slice(2);
-      // const newPosition = { ...window.object.current.position };
-      window.object.current.position.x = position[0];
-      window.object.current.position.y = position[1];
-      window.object.current.position.z = position[2];
-      /*anime({
-        targets: window.object.current.position,
-        ...newPosition,
-        duration: data[1],
-      });*/
-    }
-
-    if (attribute === "rotation") {
-      let rotation = data.slice(2);
-      window.object.current.rotation.x = rotation[0];
-      window.object.current.rotation.y = rotation[1];
-      window.object.current.rotation.z = rotation[2];
-    }
-
-    if (attribute === "scale") {
-      let scale = data.slice(2);
-      window.object.current.scale.x = scale[0];
-      window.object.current.scale.y = scale[1];
-      window.object.current.scale.z = scale[2];
-    }
-
-    if (attribute === "visible") {
-      window.object.current.visible = data[2];
-    }
-  });
 
   function onKeyDown(e) {
     let event = "KeyDown: s(shake)"
