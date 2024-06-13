@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/Snap-Spline-Demo/static/js/main.ebb07867.js",
+    "main.js": "/Snap-Spline-Demo/static/js/main.b6dfd387.js",
     "static/js/208.0a03353a.chunk.js": "/Snap-Spline-Demo/static/js/208.0a03353a.chunk.js",
     "static/js/293.e81ba66b.chunk.js": "/Snap-Spline-Demo/static/js/293.e81ba66b.chunk.js",
     "static/js/917.fe118a25.chunk.js": "/Snap-Spline-Demo/static/js/917.fe118a25.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/160.4bff2993.chunk.js": "/Snap-Spline-Demo/static/js/160.4bff2993.chunk.js",
     "static/js/23.30218631.chunk.js": "/Snap-Spline-Demo/static/js/23.30218631.chunk.js",
     "index.html": "/Snap-Spline-Demo/index.html",
-    "main.ebb07867.js.map": "/Snap-Spline-Demo/static/js/main.ebb07867.js.map",
+    "main.b6dfd387.js.map": "/Snap-Spline-Demo/static/js/main.b6dfd387.js.map",
     "208.0a03353a.chunk.js.map": "/Snap-Spline-Demo/static/js/208.0a03353a.chunk.js.map",
     "293.e81ba66b.chunk.js.map": "/Snap-Spline-Demo/static/js/293.e81ba66b.chunk.js.map",
     "917.fe118a25.chunk.js.map": "/Snap-Spline-Demo/static/js/917.fe118a25.chunk.js.map",
@@ -21,6 +21,6 @@
     "23.30218631.chunk.js.map": "/Snap-Spline-Demo/static/js/23.30218631.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.ebb07867.js"
+    "static/js/main.b6dfd387.js"
   ]
 }
