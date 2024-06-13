@@ -238,7 +238,7 @@ class Supervisor {
                 console.log("(Supervisor) bad message");
             }
         } catch (e) {
-            alert("Supervisor parseToJson error: " + e);
+            console.error("Supervisor parseToJson error: " + e);
         }
         return null;
     }
