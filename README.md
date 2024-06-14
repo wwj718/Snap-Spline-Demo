@@ -1,6 +1,6 @@
 # Spline Adapter
 
-Refer to [Spline library for Snap!](https://wwj718.github.io/post/programming/snap-gpt-4o-en/)
+Refer to [Spline library for Snap!](https://wwj718.github.io/post/programming/snap-spline-en/)
 
 ## How it works?
 
